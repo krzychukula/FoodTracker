@@ -8,9 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,
+        UITableViewDataSource, UITableViewDelegate,
+        UISearchBarDelegate, UISearchControllerDelegate,
+        UISearchResultsUpdating {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    var searchController: UISearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +27,17 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    //MARK: - Table
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
+    //MARK: - UISearchResultsUpdating
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+    }
 }
 
