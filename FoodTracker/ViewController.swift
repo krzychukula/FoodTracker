@@ -20,6 +20,8 @@ class ViewController: UIViewController,
     var suggestedSearchFoods:[String] = []
     var filteredSuggestedSearchFoods:[String] = []
     
+    var scopeButtonTitles = ["Recommended", "Search Results", "Saved"]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,7 @@ class ViewController: UIViewController,
         
         self.tableView.tableHeaderView = self.searchController.searchBar
         
+        self.searchController.searchBar.scopeButtonTitles = scopeButtonTitles
         self.searchController.searchBar.delegate = self
         
         self.definesPresentationContext = true
@@ -77,7 +80,18 @@ class ViewController: UIViewController,
     
     //MARK: - UISearchResultsUpdating
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-        
+        let searchString = self.searchController.searchBar.text
+        let selectedScopeButtonIndex = self.searchController.searchBar.selectedScopeButtonIndex
+        self.filterContentForSearch(searchString, scope: selectedScopeButtonIndex)
+        self.tableView.reloadData()
+    }
+    
+    
+    func filterContentForSearch(searchText: String, scope: Int) {
+        self.filteredSuggestedSearchFoods = self.suggestedSearchFoods.filter({ (food:String) -> Bool in
+            var foodMatch = food.rangeOfString(searchText)
+            return foodMatch != nil
+        })
     }
 }
 
