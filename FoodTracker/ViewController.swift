@@ -59,7 +59,20 @@ class ViewController: UIViewController,
         }
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
+        
+        var foodName: String
+        
+        if self.searchController.active {
+            foodName = self.filteredSuggestedSearchFoods[indexPath.row]
+        }else{
+            foodName = self.suggestedSearchFoods[indexPath.row]
+        }
+        
+        cell.textLabel?.text = foodName
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        
+        return cell;
     }
     
     //MARK: - UISearchResultsUpdating
