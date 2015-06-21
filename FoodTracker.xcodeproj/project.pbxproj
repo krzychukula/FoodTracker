@@ -15,6 +15,7 @@
 		836EBC731B358CE00023DCEC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 836EBC711B358CE00023DCEC /* LaunchScreen.xib */; };
 		836EBC7F1B358CE00023DCEC /* FoodTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBC7E1B358CE00023DCEC /* FoodTrackerTests.swift */; };
 		836EBC891B35B75A0023DCEC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBC881B35B75A0023DCEC /* DetailViewController.swift */; };
+		836EBC8B1B3699E90023DCEC /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 836EBC8A1B3699E90023DCEC /* Keys.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		836EBC7D1B358CE00023DCEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		836EBC7E1B358CE00023DCEC /* FoodTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTrackerTests.swift; sourceTree = "<group>"; };
 		836EBC881B35B75A0023DCEC /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		836EBC8A1B3699E90023DCEC /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				836EBC641B358CE00023DCEC /* Info.plist */,
+				836EBC8A1B3699E90023DCEC /* Keys.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				836EBC8B1B3699E90023DCEC /* Keys.plist in Resources */,
 				836EBC6E1B358CE00023DCEC /* Main.storyboard in Resources */,
 				836EBC731B358CE00023DCEC /* LaunchScreen.xib in Resources */,
 				836EBC701B358CE00023DCEC /* Images.xcassets in Resources */,
