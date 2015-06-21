@@ -24,6 +24,7 @@ class ViewController: UIViewController,
     var suggestedSearchFoods:[String] = []
     var filteredSuggestedSearchFoods:[String] = []
     var favouritedUSDAItems:[USDAItem] = []
+    var filteredFavouritedUSDAItems:[USDAItem] = []
     
     var scopeButtonTitles = ["Recommended", "Search Results", "Saved"]
     
@@ -89,7 +90,12 @@ class ViewController: UIViewController,
         }else if selectedScopeButtonIndex == 1 {
             return self.apiSearchForFoods.count
         }else {
-            return self.favouritedUSDAItems.count
+            if self.searchController.active {
+                return self.filteredFavouritedUSDAItems.count
+            }else{
+                return self.favouritedUSDAItems.count
+            }
+            
         }
         
         
@@ -109,7 +115,12 @@ class ViewController: UIViewController,
         }else if selectedScopeButtonIndex == 1 {
             foodName = self.apiSearchForFoods[indexPath.row].name
         }else {
-            foodName = self.favouritedUSDAItems[indexPath.row].name
+            if self.searchController.active {
+                foodName = self.filteredFavouritedUSDAItems[indexPath.row].name
+            }else{
+                foodName = self.favouritedUSDAItems[indexPath.row].name
+            }
+            
         }
         
         
@@ -154,10 +165,18 @@ class ViewController: UIViewController,
     }
     
     func filterContentForSearch(searchText: String, scope: Int) {
-        self.filteredSuggestedSearchFoods = self.suggestedSearchFoods.filter({ (food:String) -> Bool in
-            var foodMatch = food.rangeOfString(searchText)
-            return foodMatch != nil
-        })
+        if scope == 0 {
+            self.filteredSuggestedSearchFoods = self.suggestedSearchFoods.filter({ (food:String) -> Bool in
+                var foodMatch = food.rangeOfString(searchText)
+                return foodMatch != nil
+            })
+        }else if scope == 2 {
+            self.filteredFavouritedUSDAItems = self.favouritedUSDAItems.filter({ (item: USDAItem) -> Bool in
+                var stringMatch = item.name.rangeOfString(searchText)
+                return stringMatch != nil
+            })
+        }
+
     }
     
     //MARK: UISeachBarDelegate
