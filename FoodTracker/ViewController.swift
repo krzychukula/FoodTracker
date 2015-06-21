@@ -89,7 +89,7 @@ class ViewController: UIViewController,
         }else if selectedScopeButtonIndex == 1 {
             return self.apiSearchForFoods.count
         }else {
-            return 0
+            return self.favouritedUSDAItems.count
         }
         
         
@@ -109,7 +109,7 @@ class ViewController: UIViewController,
         }else if selectedScopeButtonIndex == 1 {
             foodName = self.apiSearchForFoods[indexPath.row].name
         }else {
-            foodName = "empty"
+            foodName = self.favouritedUSDAItems[indexPath.row].name
         }
         
         
@@ -141,7 +141,7 @@ class ViewController: UIViewController,
             self.dataController.saveUSDAValueItemForId(idValue, json: self.jsonResponse)
             
         }else if selectedScopeButtonIndex == 2 {
-            
+            println("selected favourited item")
         }
     }
     
