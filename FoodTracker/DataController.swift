@@ -55,6 +55,10 @@ class DataController {
                         return
                     }else {
                         println("Lets save \(idValue) to CoreData")
+                        
+                        let entityDescription = NSEntityDescription.entityForName("USDAItem", inManagedObjectContext: managedObjectContext!)
+                        let usdaItem = USDAItem(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext!)
+                        usdaItem.idValue = idValue
                     }
                     
                 }
