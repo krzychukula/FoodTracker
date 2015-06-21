@@ -116,6 +116,28 @@ class ViewController: UIViewController,
         return cell;
     }
     
+    //MARK: UITableViewDelegate
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedScopeButtonIndex = self.searchController.searchBar.selectedScopeButtonIndex
+        
+        if selectedScopeButtonIndex == 0 {
+            var searchFoodNamed: String
+            
+            if self.searchController.active {
+                searchFoodNamed = self.filteredSuggestedSearchFoods[indexPath.row]
+            }else {
+                searchFoodNamed = self.suggestedSearchFoods[indexPath.row]
+            }
+            self.searchController.searchBar.selectedScopeButtonIndex = 1;
+            makeRequest(searchFoodNamed)
+            
+        }else if selectedScopeButtonIndex == 1 {
+            
+        }else if selectedScopeButtonIndex == 2 {
+            
+        }
+    }
+    
     //MARK: - UISearchResultsUpdating
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchString = self.searchController.searchBar.text
