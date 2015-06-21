@@ -158,6 +158,9 @@ class ViewController: UIViewController,
         self.searchController.searchBar.selectedScopeButtonIndex = 1
         makeRequest(searchBar.text)
     }
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        self.tableView.reloadData()
+    }
     
     func makeRequest(searchText: String) {
         
