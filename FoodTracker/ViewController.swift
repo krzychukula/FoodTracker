@@ -25,6 +25,8 @@ class ViewController: UIViewController,
     
     var scopeButtonTitles = ["Recommended", "Search Results", "Saved"]
     
+    var jsonResponse: NSDictionary!
+    var apiSearchForFoods: [(name:String, idValue: String)] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,7 +146,8 @@ class ViewController: UIViewController,
                 println("Error in \(errorString)")
             }else{
                 if jsonDictionary != nil {
-                    
+                    self.jsonResponse = jsonDictionary! as! NSDictionary
+                    self.apiSearchForFoods = DataController.jsonAsUSDAIdAndNameSearchResults(jsonDictionary! as! NSDictionary)
                 }else{
                     let errorString = NSString(data: data, encoding: NSUTF8StringEncoding)
                     println("Could not parse error in \(errorString)")
