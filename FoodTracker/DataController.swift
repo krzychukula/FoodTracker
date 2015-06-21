@@ -61,9 +61,40 @@ class DataController {
                         usdaItem.idValue = idValue
                         usdaItem.dateAdded = NSDate()
                         if itemDictionary["fields"] != nil {
+                            //FIELDS
+                            
+                            //name
                             let fieldsDictionary = itemDictionary["fields"]! as! NSDictionary
                             if fieldsDictionary["item_name"] != nil {
                                 usdaItem.name = fieldsDictionary["item_name"]! as! String
+                            }
+                            
+                           
+                            if let usdaFieldsDictionary = fieldsDictionary["usda_fields"] as? NSDictionary {
+                                
+                                //calcium
+                                if let calciumDictionary = usdaFieldsDictionary["CA"] as? NSDictionary {
+                                    let calciumValue: AnyObject = calciumDictionary["value"]!
+                                    usdaItem.calcium = "\(calciumValue)"
+                                }else{
+                                    usdaItem.calcium = "0"
+                                }
+                                
+                                //carophydrate
+                                if let carbohydrateDictionary = usdaFieldsDictionary["CHOCDF"] as? NSDictionary {
+                                    
+                                    usdaItem.carbohydrate = carbohydrateDictionary["value"]! as! String
+                                }else{
+                                    usdaItem.carbohydrate = "0"
+                                }
+                                
+                                //fat
+                                if let fatDictionary = usdaFieldsDictionary["FAT"] as? NSDictionary {
+                                    
+                                    usdaItem.fatTotal = fatDictionary["value"]! as! String
+                                }else{
+                                    usdaItem.fatTotal = "0"
+                                }
                             }
                         }
                     }
