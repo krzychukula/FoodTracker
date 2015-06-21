@@ -137,7 +137,21 @@ class ViewController: UIViewController,
             var conversionError:NSError?
             var jsonDictionary: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableLeaves, error: &conversionError)
             println(jsonDictionary)
+            
+            if conversionError != nil {
+                println(conversionError?.localizedDescription)
+                let errorString = NSString(data: data, encoding: NSUTF8StringEncoding)
+                println("Error in \(errorString)")
+            }else{
+                if jsonDictionary != nil {
+                    
+                }else{
+                    let errorString = NSString(data: data, encoding: NSUTF8StringEncoding)
+                    println("Could not parse error in \(errorString)")
+                }
+            }
         })
+        task.resume()
     }
     
     func makeGetRequest(searchText: String) {
