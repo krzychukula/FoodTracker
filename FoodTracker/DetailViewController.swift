@@ -24,6 +24,9 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if usdaItem != nil {
+            textView.attributedText = createAttributedString(usdaItem!)
+        }
     }
     
     deinit {
@@ -44,5 +47,28 @@ class DetailViewController: UIViewController {
     func usdaItemDidComplete(nofication: NSNotification){
         println("USDAItem in DetailViewController")
         usdaItem = nofication.object as? USDAItem
+        
+        if self.isViewLoaded() && self.view.window != nil {
+            textView.attributedText = createAttributedString(usdaItem!)
+        }
+    }
+    
+    func createAttributedString(usdaItem: USDAItem) -> NSAttributedString {
+        var item = NSMutableAttributedString()
+        var paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.Center
+        paragraphStyle.lineSpacing = 10.0
+        
+        var titleDictionary = [
+            NSForegroundColorAttributeName :  UIColor.blackColor(),
+            NSFontAttributeName : UIFont.boldSystemFontOfSize(22.0),
+            NSParagraphStyleAttributeName: paragraphStyle
+        ]
+        
+        let titleString = NSAttributedString(string: "\(usdaItem.name)\n", attributes: titleDictionary);
+        
+        item.appendAttributedString(titleString)
+        
+        return item
     }
 }
