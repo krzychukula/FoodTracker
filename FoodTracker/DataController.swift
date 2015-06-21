@@ -111,6 +111,30 @@ class DataController {
                                 }else{
                                     usdaItem.protein = "0"
                                 }
+                                
+                                //sugar
+                                if let itemDictionary = usdaFieldsDictionary["SUGAR"] as? NSDictionary {
+                                    
+                                    usdaItem.sugar = itemDictionary["value"]! as! String
+                                }else{
+                                    usdaItem.sugar = "0"
+                                }
+                                
+                                //vitamin C
+                                if let itemDictionary = usdaFieldsDictionary["VITC"] as? NSDictionary {
+                                    
+                                    usdaItem.vitaminC = itemDictionary["value"]! as! String
+                                }else{
+                                    usdaItem.vitaminC = "0"
+                                }
+                                
+                                //energy
+                                if let itemDictionary = usdaFieldsDictionary["ENERC_KCAL"] as? NSDictionary {
+                                    
+                                    usdaItem.energy = itemDictionary["value"]! as! String
+                                }else{
+                                    usdaItem.energy = "0"
+                                }
                             }
                         }
                     }
