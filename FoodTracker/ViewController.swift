@@ -152,7 +152,15 @@ class ViewController: UIViewController,
             self.dataController.saveUSDAValueItemForId(idValue, json: self.jsonResponse)
             
         }else if selectedScopeButtonIndex == 2 {
-            println("selected favourited item")
+            
+            if self.searchController.active {
+                let usdaItem = filteredFavouritedUSDAItems[indexPath.row]
+                self.performSegueWithIdentifier("toDetailVCSegue", sender: usdaItem)
+            }else{
+                let usdaItem = favouritedUSDAItems[indexPath.row]
+                self.performSegueWithIdentifier("toDetailVCSegue", sender: usdaItem)
+            }
+            
         }
     }
     

@@ -89,7 +89,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="eatEatButtonPressed" destination="QFT-AG-T3o" id="v9h-AG-Age"/>
                         <outlet property="textView" destination="PgH-Az-1HS" id="ckK-OG-W1S"/>
                     </connections>
                 </viewController>
