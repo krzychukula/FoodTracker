@@ -51,7 +51,7 @@ class DataController {
                     var items = managedObjectContext?.executeFetchRequest(requestForUSDAItem, error: &error)
                     
                     if items?.count != 0 {
-                        //item is already saved
+                        println("Item \(idValue) is already in  CoreData")
                         return
                     }else {
                         println("Lets save \(idValue) to CoreData")
@@ -83,56 +83,56 @@ class DataController {
                                 
                                 //carophydrate
                                 if let carbohydrateDictionary = usdaFieldsDictionary["CHOCDF"] as? NSDictionary {
-                                    
-                                    usdaItem.carbohydrate = carbohydrateDictionary["value"]! as! String
+                                    let itemValue: AnyObject = carbohydrateDictionary["value"]!
+                                    usdaItem.carbohydrate = "\(itemValue)"
                                 }else{
                                     usdaItem.carbohydrate = "0"
                                 }
                                 
                                 //fat
                                 if let fatDictionary = usdaFieldsDictionary["FAT"] as? NSDictionary {
-                                    
-                                    usdaItem.fatTotal = fatDictionary["value"]! as! String
+                                    let itemValue: AnyObject = fatDictionary["value"]!
+                                    usdaItem.fatTotal = "\(itemValue)"
                                 }else{
                                     usdaItem.fatTotal = "0"
                                 }
                                 
                                 //cholesterol
                                 if let cholesterolDictionary = usdaFieldsDictionary["CHOLE"] as? NSDictionary {
-                                    
-                                    usdaItem.cholesterol = cholesterolDictionary["value"]! as! String
+                                    let itemValue: AnyObject = cholesterolDictionary["value"]!
+                                    usdaItem.cholesterol = "\(itemValue)"
                                 }else{
                                     usdaItem.cholesterol = "0"
                                 }
                                 
                                 //protein
                                 if let proteinDictionary = usdaFieldsDictionary["PROCNT"] as? NSDictionary {
-                                    
-                                    usdaItem.protein = proteinDictionary["value"]! as! String
+                                    let itemValue: AnyObject = proteinDictionary["value"]!
+                                    usdaItem.protein = "\(itemValue)"
                                 }else{
                                     usdaItem.protein = "0"
                                 }
                                 
                                 //sugar
                                 if let itemDictionary = usdaFieldsDictionary["SUGAR"] as? NSDictionary {
-                                    
-                                    usdaItem.sugar = itemDictionary["value"]! as! String
+                                    let itemValue: AnyObject = itemDictionary["value"]!
+                                    usdaItem.sugar = "\(itemValue)"
                                 }else{
                                     usdaItem.sugar = "0"
                                 }
                                 
                                 //vitamin C
                                 if let itemDictionary = usdaFieldsDictionary["VITC"] as? NSDictionary {
-                                    
-                                    usdaItem.vitaminC = itemDictionary["value"]! as! String
+                                    let itemValue: AnyObject = itemDictionary["value"]!
+                                    usdaItem.vitaminC = "\(itemValue)"
                                 }else{
                                     usdaItem.vitaminC = "0"
                                 }
                                 
                                 //energy
                                 if let itemDictionary = usdaFieldsDictionary["ENERC_KCAL"] as? NSDictionary {
-                                    
-                                    usdaItem.energy = itemDictionary["value"]! as! String
+                                    let itemValue: AnyObject = itemDictionary["value"]!
+                                    usdaItem.energy = "\(itemValue)"
                                 }else{
                                     usdaItem.energy = "0"
                                 }
