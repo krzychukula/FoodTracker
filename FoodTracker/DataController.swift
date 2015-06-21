@@ -34,4 +34,24 @@ class DataController {
         }
         return usdaItemsSearchResults
     }
+    
+    func saveUSDAValueItemForId(idValue: String, json: NSDictionary){
+        if json["hits"] != nil {
+            let results:[AnyObject] = json["hits"]! as! [AnyObject]
+            
+            for itemDictionary in results {
+                if itemDictionary["_id"] != nil && itemDictionary["_id"] as! String == idValue {
+                    
+                    //check if it was saved
+                    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+                    var requestForUSDAItem = NSFetchRequest(entityName: "USDAItem")
+                    let predicate = NSPredicate(format: "idValue == %@", idValue)
+                    requestForUSDAItem.predicate = predicate
+                    var error: NSError?
+                    var items = managedObjectContext?.executeFetchRequest(requestForUSDAItem, error: &error)
+                    
+                }
+            }
+        }
+    }
 }

@@ -89,11 +89,11 @@
 			children = (
 				836EBC651B358CE00023DCEC /* AppDelegate.swift */,
 				836EBC6A1B358CE00023DCEC /* ViewController.swift */,
-				836EBC8C1B36C6150023DCEC /* DataController.swift */,
 				836EBC881B35B75A0023DCEC /* DetailViewController.swift */,
 				836EBC6C1B358CE00023DCEC /* Main.storyboard */,
 				836EBC6F1B358CE00023DCEC /* Images.xcassets */,
 				836EBC711B358CE00023DCEC /* LaunchScreen.xib */,
+				836EBC8C1B36C6150023DCEC /* DataController.swift */,
 				836EBC671B358CE00023DCEC /* FoodTracker.xcdatamodeld */,
 				836EBC8E1B36EFAE0023DCEC /* USDAItem.swift */,
 				836EBC631B358CE00023DCEC /* Supporting Files */,
