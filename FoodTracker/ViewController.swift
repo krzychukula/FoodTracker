@@ -44,7 +44,6 @@ class ViewController: UIViewController,
         if let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist") {
             println(path)
             if let dict = NSDictionary(contentsOfFile: path) as? Dictionary<String, AnyObject> {
-                println(dict)
                 // use swift dictionary as normal
                 kAppId = dict["kAppId"] as! String
                 kAppKey = dict["kApiKey"] as! String
@@ -71,7 +70,11 @@ class ViewController: UIViewController,
         self.suggestedSearchFoods = ["apple", "bagel", "banana", "beer", "bread", "carrots", "cheddar cheese", "chicken breast", "chili with beans", "chocolate chip cookie", "coffee", "cola", "corn", "egg", "graham cracker", "granola bar", "green beans", "ground beef patty", "hot dog", "ice cream", "jelly doughnut", "ketchup", "milk", "mixed nuts", "mustard", "oatmeal", "orange juice", "peanut butter", "pizza", "pork chop", "potato", "potato chips", "pretzels", "raisins", "ranch salad dressing", "red wine", "rice", "salsa", "shrimp", "spaghetti", "spaghetti sauce", "tuna", "white wine", "yellow cake"]
         
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "usdaItemDidComplete", name: kUSDAItemCompleted, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "usdaItemDidComplete:", name: kUSDAItemCompleted, object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -159,11 +162,14 @@ class ViewController: UIViewController,
             makeRequest(searchFoodNamed)
             
         }else if selectedScopeButtonIndex == 1 {
+            //first segue so detailVC can be initialized
+            self.performSegueWithIdentifier("toDetailVCSegue", sender: nil)
+            
             //save food by id
             let idValue = apiSearchForFoods[indexPath.row].idValue
             self.dataController.saveUSDAValueItemForId(idValue, json: self.jsonResponse)
             
-            self.performSegueWithIdentifier("toDetailVCSegue", sender: nil)
+            
             
         }else if selectedScopeButtonIndex == 2 {
             
