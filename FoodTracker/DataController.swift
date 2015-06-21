@@ -50,6 +50,13 @@ class DataController {
                     var error: NSError?
                     var items = managedObjectContext?.executeFetchRequest(requestForUSDAItem, error: &error)
                     
+                    if items?.count != 0 {
+                        //item is already saved
+                        return
+                    }else {
+                        println("Lets save \(idValue) to CoreData")
+                    }
+                    
                 }
             }
         }
