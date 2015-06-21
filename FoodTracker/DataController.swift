@@ -95,6 +95,22 @@ class DataController {
                                 }else{
                                     usdaItem.fatTotal = "0"
                                 }
+                                
+                                //cholesterol
+                                if let cholesterolDictionary = usdaFieldsDictionary["CHOLE"] as? NSDictionary {
+                                    
+                                    usdaItem.cholesterol = cholesterolDictionary["value"]! as! String
+                                }else{
+                                    usdaItem.cholesterol = "0"
+                                }
+                                
+                                //protein
+                                if let proteinDictionary = usdaFieldsDictionary["PROCNT"] as? NSDictionary {
+                                    
+                                    usdaItem.protein = proteinDictionary["value"]! as! String
+                                }else{
+                                    usdaItem.protein = "0"
+                                }
                             }
                         }
                     }
