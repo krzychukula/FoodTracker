@@ -70,6 +70,15 @@ class ViewController: UIViewController,
         
         self.suggestedSearchFoods = ["apple", "bagel", "banana", "beer", "bread", "carrots", "cheddar cheese", "chicken breast", "chili with beans", "chocolate chip cookie", "coffee", "cola", "corn", "egg", "graham cracker", "granola bar", "green beans", "ground beef patty", "hot dog", "ice cream", "jelly doughnut", "ketchup", "milk", "mixed nuts", "mustard", "oatmeal", "orange juice", "peanut butter", "pizza", "pork chop", "potato", "potato chips", "pretzels", "raisins", "ranch salad dressing", "red wine", "rice", "salsa", "shrimp", "spaghetti", "spaghetti sauce", "tuna", "white wine", "yellow cake"]
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toDetailVCSegue" {
+            if sender != nil {
+                var detailVC = segue.destinationViewController as! DetailViewController
+                detailVC.usdaItem = sender as? USDAItem
+            }
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -150,6 +159,8 @@ class ViewController: UIViewController,
             //save food by id
             let idValue = apiSearchForFoods[indexPath.row].idValue
             self.dataController.saveUSDAValueItemForId(idValue, json: self.jsonResponse)
+            
+            self.performSegueWithIdentifier("toDetailVCSegue", sender: nil)
             
         }else if selectedScopeButtonIndex == 2 {
             
