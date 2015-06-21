@@ -60,6 +60,7 @@ class DataController {
                         let usdaItem = USDAItem(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext!)
                         usdaItem.idValue = idValue
                         usdaItem.dateAdded = NSDate()
+                        
                         if itemDictionary["fields"] != nil {
                             //FIELDS
                             
@@ -137,6 +138,8 @@ class DataController {
                                 }
                             }
                         }
+                        
+                        (UIApplication.sharedApplication().delegate as! AppDelegate).saveContext()
                     }
                     
                 }
