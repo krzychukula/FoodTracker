@@ -74,22 +74,41 @@ class ViewController: UIViewController,
     //MARK: - Table
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if self.searchController.active {
-            return self.filteredSuggestedSearchFoods.count
-        }else{
-            return self.suggestedSearchFoods.count
+        let selectedScopeButtonIndex = self.searchController.searchBar.selectedScopeButtonIndex
+        
+        if selectedScopeButtonIndex == 0 {
+            if self.searchController.active {
+                return self.filteredSuggestedSearchFoods.count
+            }else{
+                return self.suggestedSearchFoods.count
+            }
+        }else if selectedScopeButtonIndex == 1 {
+            return self.apiSearchForFoods.count
+        }else {
+            return 0
         }
+        
+        
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
         
         var foodName: String
         
-        if self.searchController.active {
-            foodName = self.filteredSuggestedSearchFoods[indexPath.row]
-        }else{
-            foodName = self.suggestedSearchFoods[indexPath.row]
+        let selectedScopeButtonIndex = self.searchController.searchBar.selectedScopeButtonIndex
+        if selectedScopeButtonIndex == 0 {
+            if self.searchController.active {
+                foodName = self.filteredSuggestedSearchFoods[indexPath.row]
+            }else{
+                foodName = self.suggestedSearchFoods[indexPath.row]
+            }
+        }else if selectedScopeButtonIndex == 1 {
+            foodName = self.apiSearchForFoods[indexPath.row].name
+        }else {
+            foodName = "empty"
         }
+        
+        
         
         cell.textLabel?.text = foodName
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
@@ -114,10 +133,14 @@ class ViewController: UIViewController,
     
     //MARK: UISeachBarDelegate
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        self.searchController.searchBar.selectedScopeButtonIndex = 1
         makeRequest(searchBar.text)
     }
     
     func makeRequest(searchText: String) {
+        
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        
         var request = NSMutableURLRequest(URL: NSURL(string: "https://api.nutritionix.com/v1_1/search/")!)
         let session = NSURLSession.sharedSession()
         request.HTTPMethod = "POST"
@@ -135,6 +158,9 @@ class ViewController: UIViewController,
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         var task = session.dataTaskWithRequest(request, completionHandler: { (data, response, err) -> Void in
+            
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            
             var stringData = NSString(data: data, encoding: NSUTF8StringEncoding)
             var conversionError:NSError?
             var jsonDictionary: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableLeaves, error: &conversionError)
@@ -148,6 +174,8 @@ class ViewController: UIViewController,
                 if jsonDictionary != nil {
                     self.jsonResponse = jsonDictionary! as! NSDictionary
                     self.apiSearchForFoods = DataController.jsonAsUSDAIdAndNameSearchResults(jsonDictionary! as! NSDictionary)
+                    
+                    self.tableView.reloadData()
                 }else{
                     let errorString = NSString(data: data, encoding: NSUTF8StringEncoding)
                     println("Could not parse error in \(errorString)")
