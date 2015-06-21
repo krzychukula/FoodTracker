@@ -289,6 +289,7 @@ class ViewController: UIViewController,
     
     //MARK: NSNotificaionCenter
     func usdaItemDidComplete(notification: NSNotification){
+        println("USDAItem in ViewController");
         requestFavouritedUSDAItems()
         let selectedScopeButtonIndex = self.searchController.searchBar.selectedScopeButtonIndex
         if selectedScopeButtonIndex == 2 {
