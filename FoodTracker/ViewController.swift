@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController,
         UITableViewDataSource, UITableViewDelegate,
@@ -22,6 +23,7 @@ class ViewController: UIViewController,
     
     var suggestedSearchFoods:[String] = []
     var filteredSuggestedSearchFoods:[String] = []
+    var favouritedUSDAItems:[USDAItem] = []
     
     var scopeButtonTitles = ["Recommended", "Search Results", "Saved"]
     
@@ -164,6 +166,11 @@ class ViewController: UIViewController,
         makeRequest(searchBar.text)
     }
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        
+        if selectedScope == 2 {
+            self.requestFavouritedUSDAItems()
+        }
+        
         self.tableView.reloadData()
     }
     
@@ -227,6 +234,16 @@ class ViewController: UIViewController,
             println(error)
         })
         task.resume()
+    }
+    
+    
+    //MARK: setup core data
+    func requestFavouritedUSDAItems(){
+        let fetchRequest = NSFetchRequest(entityName: "USDAItem")
+        let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+        let managedObjectContext = appDelegate.managedObjectContext
+        self.favouritedUSDAItems = managedObjectContext?.executeFetchRequest(fetchRequest, error: nil) as! [USDAItem]
+        
     }
 }
 
