@@ -239,7 +239,7 @@ class ViewController: UIViewController,
             var stringData = NSString(data: data, encoding: NSUTF8StringEncoding)
             var conversionError:NSError?
             var jsonDictionary: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableLeaves, error: &conversionError)
-            println(jsonDictionary)
+            //println(jsonDictionary)
             
             if conversionError != nil {
                 println(conversionError?.localizedDescription)
