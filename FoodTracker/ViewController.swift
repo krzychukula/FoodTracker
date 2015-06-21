@@ -128,10 +128,16 @@ class ViewController: UIViewController,
             "filters": ["exists":["usda_fields": true]]
         ]
         var error: NSError?
-        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: error)
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &error)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
+        var task = session.dataTaskWithRequest(request, completionHandler: { (data, response, err) -> Void in
+            var stringData = NSString(data: data, encoding: NSUTF8StringEncoding)
+            var conversionError:NSError?
+            var jsonDictionary: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableLeaves, error: &conversionError)
+            println(jsonDictionary)
+        })
     }
     
     func makeGetRequest(searchText: String) {
