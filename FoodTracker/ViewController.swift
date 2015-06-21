@@ -30,6 +30,10 @@ class ViewController: UIViewController,
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        //MARK: how to hide api keys
+        // http://stackoverflow.com/questions/30803244/how-to-hide-api-keys-in-github-for-ios-swift-projects
+        //MARK: how to read plist
+        //http://stackoverflow.com/questions/24045570/swift-read-plist
         if let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist") {
             println(path)
             if let dict = NSDictionary(contentsOfFile: path) as? Dictionary<String, AnyObject> {
