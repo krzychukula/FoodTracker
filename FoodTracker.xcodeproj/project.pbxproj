@@ -46,6 +46,7 @@
 		836EBC8A1B3699E90023DCEC /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		836EBC8C1B36C6150023DCEC /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		836EBC8E1B36EFAE0023DCEC /* USDAItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USDAItem.swift; sourceTree = "<group>"; };
+		836EBC901B37D02D0023DCEC /* Readme.MD */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.MD; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +70,7 @@
 		836EBC571B358CE00023DCEC = {
 			isa = PBXGroup;
 			children = (
+				836EBC901B37D02D0023DCEC /* Readme.MD */,
 				836EBC621B358CE00023DCEC /* FoodTracker */,
 				836EBC7B1B358CE00023DCEC /* FoodTrackerTests */,
 				836EBC611B358CE00023DCEC /* Products */,
